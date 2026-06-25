@@ -16,36 +16,93 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1488498839308041'); 
     fbq('track', 'PageView');
-    fbq('track', 'ViewContent', { content_name: 'Premium Leather Bag', content_category: 'Accessories', value: 3000.00, currency: 'PKR' });
+    
+    fbq('track', 'ViewContent', {
+        content_name: 'Premium Leather Bag',
+        content_category: 'Accessories',
+        value: 3000.00,
+        currency: 'PKR'
+    });
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        :root { --bg: #F3F4F6; --surface: #FFFFFF; --primary: #111827; --dark: #000000; --accent: #F59E0B; --accent-hover: #D97706; --success: #10B981; --slate: #6B7280; --blue: #3B82F6; }
-        * { box-sizing: border-box; }
+        :root { 
+            --bg: #F3F4F6; 
+            --surface: #FFFFFF; 
+            --primary: #111827; 
+            --dark: #000000; 
+            --accent: #F59E0B; 
+            --accent-hover: #D97706; 
+            --success: #10B981; 
+            --slate: #6B7280; 
+            --blue: #3B82F6; 
+        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: var(--primary); line-height: 1.6; }
-        .wrapper { max-width: 500px; margin: 0 auto; background: var(--surface); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.1); }
+        .wrapper { max-width: 500px; margin: 0 auto; background: var(--surface); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.1); position: relative; }
+        
         .top-promo-bar { background: var(--primary); color: #fff; font-size: 11px; text-align: center; padding: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-        .timer-bar { background: #FEF3C7; color: #B45309; font-size: 14px; font-weight: 800; text-align: center; padding: 10px; border-bottom: 2px solid #FDE68A; }
-        header { padding: 20px 15px 15px; text-align: center; }
-        .logo { font-size: 26px; font-weight: 900; color: var(--dark); text-transform: uppercase; }
+        .timer-bar { background: #FEF3C7; color: #B45309; font-size: 14px; font-weight: 800; text-align: center; padding: 10px; border-bottom: 2px solid #FDE68A; position: sticky; top: 0; z-index: 1001; }
+        
+        header { background: var(--surface); padding: 20px 15px 15px; border-bottom: 1px solid #E5E7EB; text-align: center; }
+        .logo-area { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .logo { font-size: 26px; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; text-transform: uppercase;}
         .logo span { color: var(--accent); }
-        .product-image { width: 100%; border-radius: 12px; margin-bottom: 15px; }
-        .video-container { margin-bottom: 20px; border: 2px solid var(--accent); border-radius: 12px; overflow: hidden; background: #000; }
-        .video-headline { background: var(--accent); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 800; }
-        .video-crop-wrapper { position: relative; width: 100%; height: 360px; }
-        .video-crop-wrapper iframe { position: absolute; width: 100%; height: 100%; }
-        .pricing-card { background: #FFFBEB; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin: 15px 20px; }
+        .verified-badge { color: var(--blue); font-size: 18px; }
+        
+        .rating-badge { background: #FFFBEB; color: #D97706; display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 50px; font-size: 13px; font-weight: 700; border: 1px solid #FEF08A; margin-bottom: 5px; }
+        .main-headline { font-size: 22px; font-weight: 900; color: var(--dark); line-height: 1.3; margin: 12px 0; padding: 0 10px; }
+
+        .content { padding: 15px 20px; }
+        .product-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.08); display: block; }
+        
+        .stock-alert { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #DC2626; margin-bottom: 15px; background: #FEE2E2; padding: 6px 12px; border-radius: 6px; border: 1px solid #FECACA; }
+        
+        .video-container { margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid var(--accent); position: relative; background: #000; }
+        .video-headline { background: var(--accent); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; z-index: 10; letter-spacing: 0.5px; }
+        .video-headline i { animation: pulse 1s infinite; }
+        .video-crop-wrapper { position: relative; width: 100%; height: 360px; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .video-crop-wrapper iframe { position: absolute; width: 110%; height: 500px; pointer-events: auto; }
+
+        .pricing-card { background: #FFFBEB; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin-bottom: 25px; margin-top: 15px; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.1); }
         .new-price { font-size: 34px; font-weight: 900; color: var(--dark); }
-        .old-price { font-size: 18px; text-decoration: line-through; color: var(--slate); margin-left: 10px; }
+        .old-price { font-size: 18px; text-decoration: line-through; color: var(--slate); margin-left: 10px; font-weight: 600; }
+        
+        .delivery-highlight { margin-top: 15px; background: #ECFDF5; padding: 12px; border-radius: 8px; border: 1px solid #A7F3D0; display: flex; align-items: center; gap: 10px; }
+        .delivery-highlight i { color: var(--success); font-size: 20px; }
+        .delivery-highlight span { color: var(--success); font-weight: 800; font-size: 15px; }
+
+        .benefits-section { display: flex; flex-direction: column; gap: 8px; }
+        .benefit-tag { background: var(--surface); border: 1px solid #E5E7EB; padding: 14px; border-radius: 8px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 12px; color: var(--primary); }
+        .benefit-tag i { color: var(--accent); font-size: 18px; width: 20px; text-align: center; }
+
+        .trust-icons-row { display: flex; justify-content: space-around; background: var(--surface); padding: 20px 5px; border-radius: 12px; margin: 25px 0; border: 1px solid #E5E7EB; box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+        .trust-item { text-align: center; font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; }
+        .trust-item i { color: var(--accent); font-size: 24px; display: block; margin-bottom: 10px; }
+
+        .grid-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .grid-gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid #E5E7EB; display: block; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .reviews-container { margin-top: 35px; margin-bottom: 25px; }
+        .reviews-container h4 { font-weight: 900; font-size: 18px; border-left: 5px solid var(--accent); padding-left: 12px; margin-bottom: 20px; color: var(--dark); }
+        .review-card { background: #F9FAFB; border: 1px solid #E5E7EB; padding: 18px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .reviewer-name { font-weight: 800; font-size: 15px; color: var(--dark); }
+        .stars { color: #F59E0B; font-size: 13px; }
+        .review-text { font-size: 14px; color: #4B5563; font-style: italic; line-height: 1.5; }
+
         .order-box { background: var(--primary); border-radius: 16px; padding: 35px 25px; color: white; margin: 20px; border: 4px solid var(--accent); }
+        .order-box h2 { font-size: 22px; margin-bottom: 25px; text-align: center; font-weight: 900; color: #FFFFFF; }
         .input-group { position: relative; margin-bottom: 18px; }
-        .input-group i { position: absolute; left: 16px; top: 18px; color: #6B7280; }
-        input, textarea, select { width: 100%; padding: 16px 16px 16px 48px; border-radius: 10px; border: 2px solid #D1D5DB; font-size: 16px; }
+        .input-group i { position: absolute; left: 16px; top: 18px; color: #6B7280; font-size: 18px; }
+        input, textarea, select { width: 100%; padding: 16px 16px 16px 48px; border-radius: 10px; border: 2px solid #D1D5DB; background: #FFFFFF; color: var(--dark); font-size: 16px; font-weight: 600; outline: none; }
         .submit-btn { background: var(--accent); color: #000; width: 100%; padding: 22px; border: none; border-radius: 10px; font-size: 19px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
-        .review-card { background: #F9FAFB; border: 1px solid #E5E7EB; padding: 18px; border-radius: 12px; margin: 10px 20px; }
+
+        .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; z-index: 999; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -55,35 +112,76 @@
     <div class="timer-bar">⚡ Premium Deal Ends In: <span id="countdown">02:00:00</span></div>
     
     <header>
-        <div class="logo">LUXE <span>BAGS</span></div>
-        <h1 style="font-size: 22px; margin-top: 10px;">Premium Quality Executive Leather Bag</h1>
+        <div class="logo-area">
+            <div class="logo">LUXE <span>BAGS</span></div>
+            <i class="fas fa-check-circle verified-badge"></i>
+        </div>
+        <div class="rating-badge">
+            <i class="fas fa-star"></i> 4.9/5 (248 Reviews)
+        </div>
+        <h1 class="main-headline">Premium Quality Executive Leather Bag - Spacious & Stylish!</h1>
     </header>
 
     <div class="content">
-        <img src="1.jpeg" class="product-image" alt="Bag" onerror="this.src='https://placehold.co/500x350/111827/F59E0B?text=Premium+Leather+Bag'">
+        <img src="1.jpeg" class="product-image" alt="Premium Leather Bag" onerror="this.src='https://placehold.co/500x350/111827/F59E0B?text=Premium+Leather+Bag'">
         
+        <div class="stock-alert">
+            <div style="width:10px; height:10px; background:#DC2626; border-radius:50%; animation: pulse 1s infinite;"></div> 
+            Strictly Limited Stock: 07 Pieces Left!
+        </div>
+
         <div class="video-container">
-            <div class="video-headline">WATCH: QUALITY DEMO BEFORE YOU BUY!</div>
+            <div class="video-headline"><i class="fas fa-play-circle"></i> WATCH: QUALITY DEMO!</div>
             <div class="video-crop-wrapper">
                 <iframe src="https://www.youtube.com/embed/tmzKPomOrd4?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist=tmzKPomOrd4" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+        
+        <div class="benefits-section">
+            <div class="benefit-tag"><i class="fas fa-award"></i> PREMIUM EXPORT QUALITY MATERIAL</div>
+            <div class="benefit-tag"><i class="fas fa-briefcase"></i> Spacious Design for Laptop & Essentials!</div>
+            <div class="benefit-tag"><i class="fas fa-box-open"></i> PARCEL KHOL KAR CHECK KAREIN!</div>
+            <div class="benefit-tag"><i class="fas fa-tint"></i> Water-Resistant Inner Lining.</div>
+        </div>
 
-        <div class="reviews-container" style="padding: 0 20px;">
+        <div class="trust-icons-row">
+            <div class="trust-item"><i class="fas fa-award"></i> TOP QUALITY</div>
+            <div class="trust-item"><i class="fas fa-search-location"></i> CHECK FIRST</div>
+            <div class="trust-item"><i class="fas fa-gem"></i> ORIGINAL LEATHER</div>
+        </div>
+
+        <div class="grid-gallery">
+            <img src="1.jpeg" alt="Bag" onerror="this.src='https://placehold.co/250x180/F3F4F6/6B7280?text=Side+View'">
+            <img src="1.jpeg" alt="Bag" onerror="this.src='https://placehold.co/250x180/F3F4F6/6B7280?text=Inside+View'">
+        </div>
+
+        <div class="reviews-container">
             <h4>Recent Reviews:</h4>
             <div class="review-card">
-                <div class="reviewer-name"><strong>Zubair Ahmed</strong></div>
-                <p>"Bag ki quality boht zabardast hai, leather bilkul original feel deta hai."</p>
+                <div class="review-header">
+                    <span class="reviewer-name">Zubair Ahmed</span>
+                    <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                </div>
+                <p class="review-text">"Bag ki quality boht zabardast hai, leather bilkul original feel deta hai."</p>
             </div>
             <div class="review-card">
-                <div class="reviewer-name"><strong>Mrs. Khan</strong></div>
-                <p>"Space kafi zyada hai, laptop asani se aa jata hai. Thank you Luxe Bags."</p>
+                <div class="review-header">
+                    <span class="reviewer-name">Mrs. Khan</span>
+                    <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                </div>
+                <p class="review-text">"Space kafi zyada hai, laptop asani se aa jata hai. Thank you Luxe Bags."</p>
             </div>
         </div>
 
         <div class="pricing-card">
-            <span class="new-price">Rs 3,000</span>
-            <span class="old-price">Rs 5,500</span>
+            <div style="display: flex; align-items: baseline;">
+                <span class="new-price">Rs 3,000</span>
+                <span class="old-price">Rs 5,500</span>
+            </div>
+            <div class="delivery-highlight">
+                <i class="fas fa-truck-moving"></i>
+                <span>FREE CASH ON DELIVERY</span>
+            </div>
         </div>
 
         <div class="order-box">
@@ -106,6 +204,8 @@
         </div>
     </div>
 </div>
+
+<a href="https://wa.me/923426881848" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
     function startTimer(duration, display) {
@@ -139,7 +239,6 @@
 
         try {
             fbq('track', 'Purchase', { value: 3000, currency: 'PKR' });
-            // Direct submission to Google Sheet only
             await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -147,7 +246,6 @@
             });
             window.location.href = "Thank_you.html?oid=" + payload.order_id;
         } catch (error) {
-            alert("Order saved, contacting you on WhatsApp.");
             window.location.href = "https://wa.me/923426881848";
         }
     });
