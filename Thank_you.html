@@ -7,33 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
-        /* MATCHING HIGH CONTRAST SCHEME */
-        :root { 
-            --bg: #F3F4F6; 
-            --surface: #FFFFFF; 
-            --primary: #111827; 
-            --dark: #000000; 
-            --accent: #F59E0B; 
-            --success: #10B981; 
-            --slate: #6B7280; 
-        }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: var(--dark); padding: 20px; }
+        :root { --bg: #F3F4F6; --surface: #FFFFFF; --primary: #111827; --accent: #F59E0B; --success: #10B981; --slate: #6B7280; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
         .card { background: var(--surface); padding: 45px 35px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); text-align: center; max-width: 420px; width: 100%; border-top: 6px solid var(--accent); }
-        .icon { font-size: 70px; color: var(--success); margin-bottom: 20px; filter: drop-shadow(0 4px 6px rgba(16, 185, 129, 0.2)); }
-        h1 { color: var(--primary); margin: 0 0 12px; font-weight: 900; letter-spacing: -0.5px; font-size: 26px; }
-        p { color: var(--slate); margin-bottom: 30px; font-size: 15px; font-weight: 500; }
-        
+        .icon { font-size: 70px; color: var(--success); margin-bottom: 20px; }
+        h1 { color: var(--primary); margin: 0 0 12px; font-size: 26px; font-weight: 900; }
+        p { color: var(--slate); margin-bottom: 30px; font-size: 15px; }
         .details-box { background: #FFFBEB; padding: 25px; border-radius: 12px; text-align: left; margin-bottom: 30px; border: 2px dashed var(--accent); }
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; border-bottom: 1px solid #FDE68A; padding-bottom: 8px; }
-        .detail-row:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-        .detail-row span { color: var(--slate); font-weight: 600; }
-        .detail-row strong { color: var(--primary); font-weight: 900; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; }
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 10px; font-weight: 800; width: 100%; box-sizing: border-box; text-transform: uppercase; margin-bottom: 20px; }
+        .btn:hover { background: #000; }
         
-        .tracking { color: var(--accent) !important; font-weight: 900; font-size: 16px; }
-        
-        .btn { display: inline-block; background: var(--primary); color: white; padding: 18px 30px; text-decoration: none; border-radius: 10px; font-weight: 800; font-size: 16px; width: 100%; box-sizing: border-box; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 10px 20px rgba(17, 24, 39, 0.15); }
-        .btn:hover { background: var(--dark); transform: translateY(-2px); box-shadow: 0 12px 25px rgba(17, 24, 39, 0.25); }
-        .btn:active { transform: translateY(0); }
+        /* Social & Support Styling */
+        .social-box { margin-top: 20px; border-top: 1px solid #E5E7EB; padding-top: 25px; }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+        .social-icon { font-size: 24px; color: var(--primary); transition: 0.3s; }
+        .social-icon:hover { color: var(--accent); }
+        .support-btn { display: inline-flex; align-items: center; gap: 10px; color: #25D366; font-weight: 700; text-decoration: none; font-size: 15px; }
     </style>
 </head>
 <body>
@@ -41,7 +31,7 @@
 <div class="card">
     <i class="fas fa-check-circle icon"></i>
     <h1>Order Confirmed!</h1>
-    <p>Thank you for choosing Luxe Bags. Your premium order is being processed for dispatch.</p>
+    <p>Thank you for choosing Luxe Bags. Our team will verify your details and contact you via WhatsApp shortly.</p>
 
     <div class="details-box">
         <div class="detail-row">
@@ -52,31 +42,31 @@
             <span>Amount to Pay:</span>
             <strong>Rs 3,000 (COD)</strong>
         </div>
-        <div class="detail-row">
-            <span>PostEx Tracking:</span>
-            <strong class="tracking" id="displayTracking">Fetching...</strong>
+        <div class="detail-row" style="font-size: 13px; color: var(--slate); font-style: italic;">
+            <span>Status:</span>
+            <strong>Pending Verification</strong>
         </div>
     </div>
 
     <a href="index.html" class="btn">Return to Store</a>
+
+    <div class="social-box">
+        <p style="font-size: 12px; margin-bottom: 15px;">Follow us for updates & new collections:</p>
+        <div class="social-links">
+            <!-- Yahan apna link dalein -->
+            <a href="https://instagram.com/yourhandle" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/yourpage" class="social-icon" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+        <a href="https://wa.me/923426881848" class="support-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat with Support
+        </a>
+    </div>
 </div>
 
 <script>
-    // Extract parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const oid = urlParams.get('oid');
-    const tracking = urlParams.get('tracking');
-
     document.getElementById('displayOID').innerText = oid || 'N/A';
-    
-    const trackingElement = document.getElementById('displayTracking');
-    if (tracking && tracking !== 'Pending' && tracking !== 'undefined') {
-        trackingElement.innerText = tracking;
-    } else {
-        trackingElement.innerText = 'Will be sent via SMS';
-        trackingElement.style.fontSize = '13px';
-        trackingElement.style.color = 'var(--slate)';
-    }
 </script>
 
 </body>
