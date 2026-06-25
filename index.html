@@ -226,7 +226,8 @@
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
-        btn.innerHTML = 'Ordering...';
+        // Adding the spinner icon
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
 
         const payload = {
             "order_id": '#BAG-' + Math.floor(1000 + Math.random() * 9000),
