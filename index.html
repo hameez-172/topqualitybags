@@ -70,6 +70,7 @@
         .pricing-card { background: #FFFBEB; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin-bottom: 25px; margin-top: 15px; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.1); }
         .new-price { font-size: 34px; font-weight: 900; color: var(--dark); }
         .old-price { font-size: 18px; text-decoration: line-through; color: var(--slate); margin-left: 10px; font-weight: 600; }
+        .discount-tag { background: var(--accent); color: #000; font-size: 13px; padding: 5px 12px; border-radius: 6px; font-weight: 900; margin-left: auto; display: inline-block; }
         
         .delivery-highlight { margin-top: 15px; background: #ECFDF5; padding: 12px; border-radius: 8px; border: 1px solid #A7F3D0; display: flex; align-items: center; gap: 10px; }
         .delivery-highlight i { color: var(--success); font-size: 20px; }
@@ -174,9 +175,10 @@
         </div>
 
         <div class="pricing-card">
-            <div style="display: flex; align-items: baseline;">
+            <div style="display: flex; align-items: center;">
                 <span class="new-price">Rs 3,000</span>
                 <span class="old-price">Rs 5,500</span>
+                <span class="discount-tag">45% OFF</span>
             </div>
             <div class="delivery-highlight">
                 <i class="fas fa-truck-moving"></i>
