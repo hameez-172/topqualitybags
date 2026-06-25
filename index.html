@@ -25,31 +25,67 @@
     <style>
         :root { --bg: #F3F4F6; --surface: #FFFFFF; --primary: #111827; --dark: #000000; --accent: #F59E0B; --accent-hover: #D97706; --success: #10B981; --slate: #6B7280; --blue: #3B82F6; }
         * { box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: var(--primary); }
+        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: var(--primary); line-height: 1.6; }
         .wrapper { max-width: 500px; margin: 0 auto; background: var(--surface); min-height: 100vh; box-shadow: 0 0 40px rgba(0,0,0,0.1); }
         .top-promo-bar { background: var(--primary); color: #fff; font-size: 11px; text-align: center; padding: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
-        header { padding: 20px 15px; text-align: center; }
+        .timer-bar { background: #FEF3C7; color: #B45309; font-size: 14px; font-weight: 800; text-align: center; padding: 10px; border-bottom: 2px solid #FDE68A; }
+        header { padding: 20px 15px 15px; text-align: center; }
         .logo { font-size: 26px; font-weight: 900; color: var(--dark); text-transform: uppercase; }
         .logo span { color: var(--accent); }
-        .product-image { width: 100%; border-radius: 12px; margin: 15px 0; }
+        .product-image { width: 100%; border-radius: 12px; margin-bottom: 15px; }
+        .video-container { margin-bottom: 20px; border: 2px solid var(--accent); border-radius: 12px; overflow: hidden; background: #000; }
+        .video-headline { background: var(--accent); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 800; }
+        .video-crop-wrapper { position: relative; width: 100%; height: 360px; }
+        .video-crop-wrapper iframe { position: absolute; width: 100%; height: 100%; }
+        .pricing-card { background: #FFFBEB; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin: 15px 20px; }
+        .new-price { font-size: 34px; font-weight: 900; color: var(--dark); }
+        .old-price { font-size: 18px; text-decoration: line-through; color: var(--slate); margin-left: 10px; }
         .order-box { background: var(--primary); border-radius: 16px; padding: 35px 25px; color: white; margin: 20px; border: 4px solid var(--accent); }
         .input-group { position: relative; margin-bottom: 18px; }
         .input-group i { position: absolute; left: 16px; top: 18px; color: #6B7280; }
-        input, textarea, select { width: 100%; padding: 16px 16px 16px 48px; border-radius: 10px; border: 2px solid #D1D5DB; font-size: 16px; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 16px 16px 16px 48px; border-radius: 10px; border: 2px solid #D1D5DB; font-size: 16px; }
         .submit-btn { background: var(--accent); color: #000; width: 100%; padding: 22px; border: none; border-radius: 10px; font-size: 19px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+        .review-card { background: #F9FAFB; border: 1px solid #E5E7EB; padding: 18px; border-radius: 12px; margin: 10px 20px; }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="top-promo-bar">🚚 FREE & FAST DELIVERY NATIONWIDE</div>
+    <div class="timer-bar">⚡ Premium Deal Ends In: <span id="countdown">02:00:00</span></div>
+    
     <header>
         <div class="logo">LUXE <span>BAGS</span></div>
+        <h1 style="font-size: 22px; margin-top: 10px;">Premium Quality Executive Leather Bag</h1>
     </header>
 
     <div class="content">
         <img src="1.jpeg" class="product-image" alt="Bag" onerror="this.src='https://placehold.co/500x350/111827/F59E0B?text=Premium+Leather+Bag'">
         
+        <div class="video-container">
+            <div class="video-headline">WATCH: QUALITY DEMO BEFORE YOU BUY!</div>
+            <div class="video-crop-wrapper">
+                <iframe src="https://www.youtube.com/embed/tmzKPomOrd4?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist=tmzKPomOrd4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="reviews-container" style="padding: 0 20px;">
+            <h4>Recent Reviews:</h4>
+            <div class="review-card">
+                <div class="reviewer-name"><strong>Zubair Ahmed</strong></div>
+                <p>"Bag ki quality boht zabardast hai, leather bilkul original feel deta hai."</p>
+            </div>
+            <div class="review-card">
+                <div class="reviewer-name"><strong>Mrs. Khan</strong></div>
+                <p>"Space kafi zyada hai, laptop asani se aa jata hai. Thank you Luxe Bags."</p>
+            </div>
+        </div>
+
+        <div class="pricing-card">
+            <span class="new-price">Rs 3,000</span>
+            <span class="old-price">Rs 5,500</span>
+        </div>
+
         <div class="order-box">
             <h2>Enter Delivery Details</h2>
             <form id="orderForm">
@@ -72,11 +108,23 @@
 </div>
 
 <script>
+    function startTimer(duration, display) {
+        let timer = duration;
+        setInterval(() => {
+            let h = parseInt(timer / 3600, 10);
+            let m = parseInt((timer % 3600) / 60, 10);
+            let s = parseInt(timer % 60, 10);
+            display.textContent = `${h<10?'0':''}${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`;
+            if (--timer < 0) timer = duration;
+        }, 1000);
+    }
+    window.onload = () => startTimer(7200, document.querySelector('#countdown'));
+
     document.getElementById("orderForm").addEventListener("submit", async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving Order...';
+        btn.innerHTML = 'Saving Order...';
 
         const payload = {
             "order_id": '#BAG-' + Math.floor(1000 + Math.random() * 9000),
@@ -91,17 +139,15 @@
 
         try {
             fbq('track', 'Purchase', { value: 3000, currency: 'PKR' });
-
-            // Saving directly to Google Sheets only
+            // Direct submission to Google Sheet only
             await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ data: [payload] })
             });
-
             window.location.href = "Thank_you.html?oid=" + payload.order_id;
         } catch (error) {
-            alert("Order saved, please contact us on WhatsApp.");
+            alert("Order saved, contacting you on WhatsApp.");
             window.location.href = "https://wa.me/923426881848";
         }
     });
