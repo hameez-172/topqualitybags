@@ -67,16 +67,26 @@
 
 <script>
     window.onload = function() {
-        // Poora URL get karein
-        const urlParams = new URLSearchParams(window.location.search);
-        let oid = urlParams.get('oid');
+        // Poora URL get karein taake # sign bhi include ho jaye
+        const fullUrl = window.location.href;
+        const displayElement = document.getElementById('displayOID');
         
-        // Agar oid mein # sign hai, to usay hata dein
-        if (oid) {
+        // Agar URL mein "oid=" mojood hai
+        if (fullUrl.includes("oid=")) {
+            let oid = fullUrl.split("oid=")[1];
+            
+            // Agar URL mein koi aur parameter (&) ho, to usay hata dein
+            if (oid.includes("&")) {
+                oid = oid.split("&")[0];
+            }
+            
+            // Agar # sign shuru mein hai to usay hata dein
             oid = oid.replace('#', '');
-            document.getElementById('displayOID').innerText = "#" + oid;
+            
+            // ID display karein
+            displayElement.innerText = "#" + oid;
         } else {
-            document.getElementById('displayOID').innerText = "Pending";
+            displayElement.innerText = "Pending";
         }
     };
 </script>
