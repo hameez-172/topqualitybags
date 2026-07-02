@@ -53,9 +53,8 @@
     <div class="social-box">
         <p style="font-size: 12px; margin-bottom: 15px;">Follow us for updates & new collections:</p>
         <div class="social-links">
-            <!-- Yahan apna link dalein -->
-            <a href="https://instagram.com/yourhandle" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://facebook.com/yourpage" class="social-icon" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook"></i></a>
         </div>
         <a href="https://wa.me/923426881848" class="support-btn" target="_blank">
             <i class="fab fa-whatsapp"></i> Chat with Support
@@ -64,9 +63,18 @@
 </div>
 
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const oid = urlParams.get('oid');
-    document.getElementById('displayOID').innerText = oid || 'N/A';
+    // URL se Order ID fetch karne ka logic
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const oid = urlParams.get('oid');
+        const displayElement = document.getElementById('displayOID');
+        
+        if (oid) {
+            displayElement.innerText = oid;
+        } else {
+            displayElement.innerText = "N/A";
+        }
+    };
 </script>
 
 </body>
