@@ -39,7 +39,7 @@
     <div class="details-box">
         <div class="detail-row">
             <span>Order ID:</span>
-            <strong id="displayOID">Processing...</strong>
+            <strong id="displayOID">Loading...</strong>
         </div>
         <div class="detail-row">
             <span>Amount to Pay:</span>
@@ -67,22 +67,16 @@
 
 <script>
     window.onload = function() {
-        // Full URL se query string uthaein
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+        // Poora URL get karein
+        const urlParams = new URLSearchParams(window.location.search);
         let oid = urlParams.get('oid');
         
-        // Agar oid mein # shamil hai to usay handle karein
-        if (oid && oid.includes('#')) {
-            oid = oid.replace('#', '');
-        }
-
-        const displayElement = document.getElementById('displayOID');
-        
+        // Agar oid mein # sign hai, to usay hata dein
         if (oid) {
-            displayElement.innerText = "#" + oid;
+            oid = oid.replace('#', '');
+            document.getElementById('displayOID').innerText = "#" + oid;
         } else {
-            displayElement.innerText = "Pending";
+            document.getElementById('displayOID').innerText = "Pending";
         }
     };
 </script>
