@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE BAGS | Premium Executive Leather Bag</title>
+    <title>LUXE BAGS | Premium Executive Bag</title>
     
+    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -14,7 +15,7 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1488498839308041'); 
+    fbq('init', '999924072956897'); 
     fbq('track', 'PageView');
     
     fbq('track', 'ViewContent', {
@@ -23,6 +24,15 @@
         value: 3000.00,
         currency: 'PKR'
     });
+    </script>
+
+    <!-- Microsoft Clarity Code -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "xfwx2x69nl");
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -57,16 +67,19 @@
         .main-headline { font-size: 22px; font-weight: 900; color: var(--dark); line-height: 1.3; margin: 12px 0; padding: 0 10px; }
 
         .content { padding: 15px 20px; }
-        .product-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 15px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.08); display: block; }
+        .product-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 12px; margin: 15px 0 5px 0; box-shadow: 0 10px 20px rgba(0,0,0,0.08); display: block; transition: opacity 0.3s ease; }
         
-        .stock-alert { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #DC2626; margin-bottom: 15px; background: #FEE2E2; padding: 6px 12px; border-radius: 6px; border: 1px solid #FECACA; }
-        
-        .video-container { margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border: 2px solid var(--accent); position: relative; background: #000; }
-        .video-headline { background: var(--accent); color: #fff; text-align: center; padding: 10px; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; position: relative; z-index: 10; letter-spacing: 0.5px; }
-        .video-headline i { animation: pulse 1s infinite; }
-        .video-crop-wrapper { position: relative; width: 100%; height: 360px; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-        .video-crop-wrapper iframe { position: absolute; width: 110%; height: 500px; pointer-events: auto; }
+        /* Color Selector Styles */
+        .color-selector { text-align: center; margin: 15px 0 25px 0; padding: 15px; background: #F9FAFB; border-radius: 12px; border: 1px solid #E5E7EB; }
+        .color-selector p { font-weight: 800; font-size: 15px; margin: 0 0 10px 0; color: var(--dark); }
+        .color-options { display: flex; justify-content: center; gap: 15px; }
+        .color-btn { width: 45px; height: 45px; border-radius: 50%; border: 3px solid #E5E7EB; cursor: pointer; transition: all 0.2s; padding: 0; position: relative; }
+        .color-btn.active { border-color: var(--primary); transform: scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        .color-btn.active::after { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+        .color-label { display: block; font-size: 12px; font-weight: 700; margin-top: 8px; color: var(--slate); text-transform: uppercase; }
 
+        .stock-alert { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #DC2626; margin-bottom: 20px; background: #FEE2E2; padding: 8px 12px; border-radius: 6px; border: 1px solid #FECACA; }
+        
         .pricing-card { background: #FFFBEB; border: 2px dashed var(--accent); padding: 20px; border-radius: 12px; margin-bottom: 25px; margin-top: 15px; box-shadow: 0 4px 6px rgba(245, 158, 11, 0.1); }
         .new-price { font-size: 34px; font-weight: 900; color: var(--dark); }
         .old-price { font-size: 18px; text-decoration: line-through; color: var(--slate); margin-left: 10px; font-weight: 600; }
@@ -85,7 +98,8 @@
         .trust-item i { color: var(--accent); font-size: 24px; display: block; margin-bottom: 10px; }
 
         .grid-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .grid-gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid #E5E7EB; display: block; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .grid-gallery img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid #E5E7EB; display: block; box-shadow: 0 4px 6px rgba(0,0,0,0.05); cursor: pointer; transition: transform 0.2s; }
+        .grid-gallery img:hover { transform: scale(1.03); border-color: var(--accent); }
 
         .reviews-container { margin-top: 35px; margin-bottom: 25px; }
         .reviews-container h4 { font-weight: 900; font-size: 18px; border-left: 5px solid var(--accent); padding-left: 12px; margin-bottom: 20px; color: var(--dark); }
@@ -103,6 +117,7 @@
         .submit-btn { background: var(--accent); color: #000; width: 100%; padding: 22px; border: none; border-radius: 10px; font-size: 19px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
 
         .wa-float { position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 32px; z-index: 999; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+        .whatsapp-btn-large { background: #25D366; color: #fff; display: flex; justify-content: center; align-items: center; padding: 18px; border-radius: 16px; margin: 0 20px 20px; font-size: 18px; font-weight: 900; text-decoration: none; text-transform: uppercase; border: 4px solid #20B858; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
     </style>
 </head>
@@ -120,27 +135,43 @@
         <div class="rating-badge">
             <i class="fas fa-star"></i> 4.9/5 (248 Reviews)
         </div>
-        <h1 class="main-headline">Premium Quality Executive Leather Bag - Spacious & Stylish!</h1>
+        <h1 class="main-headline">Never Compromise on Style: The Spacious & Stylish, Premium Executive Bag Built for Your Busy Days.</h1>
     </header>
 
     <div class="content">
-        <img src="1.jpeg" class="product-image" alt="Premium Leather Bag" onerror="this.src='https://placehold.co/500x350/111827/F59E0B?text=Premium+Leather+Bag'">
+        <img src="1.png" id="mainImage" class="product-image" alt="Premium Leather Bag">
         
+        <div class="color-selector">
+            <p><i class="fas fa-palette" style="color: var(--accent);"></i> Select Your Color:</p>
+            <div class="color-options">
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn active" data-img="1.png" data-color="Beige" style="background-color: #E6D9C5;" title="Beige"></button>
+                    <span class="color-label">Beige</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="2.png" data-color="Yellow" style="background-color: #E8B923;" title="Yellow"></button>
+                    <span class="color-label">Yellow</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="3.png" data-color="Black" style="background-color: #2D2D2D;" title="Black"></button>
+                    <span class="color-label">Black</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="4.png" data-color="Pink" style="background-color: #DDA1B0;" title="Pink"></button>
+                    <span class="color-label">Pink</span>
+                </div>
+            </div>
+        </div>
+
         <div class="stock-alert">
             <div style="width:10px; height:10px; background:#DC2626; border-radius:50%; animation: pulse 1s infinite;"></div> 
             Strictly Limited Stock: 07 Pieces Left!
         </div>
-
-        <div class="video-container">
-            <div class="video-headline"><i class="fas fa-play-circle"></i> WATCH: QUALITY DEMO!</div>
-            <div class="video-crop-wrapper">
-                <iframe src="https://www.youtube.com/embed/tmzKPomOrd4?controls=0&rel=0&autoplay=1&mute=1&loop=1&playlist=tmzKPomOrd4" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
         
         <div class="benefits-section">
             <div class="benefit-tag"><i class="fas fa-award"></i> PREMIUM EXPORT QUALITY MATERIAL</div>
-            <div class="benefit-tag"><i class="fas fa-briefcase"></i> Spacious Design for Laptop & Essentials!</div>
+            <div class="benefit-tag"><i class="fas fa-shopping-bag"></i> Versatile Crossbody Bag Design!</div>
+            <div class="benefit-tag"><i class="fas fa-briefcase"></i> Spacious Design for Essentials!</div>
             <div class="benefit-tag"><i class="fas fa-box-open"></i> PARCEL KHOL KAR CHECK KAREIN!</div>
             <div class="benefit-tag"><i class="fas fa-tint"></i> Water-Resistant Inner Lining.</div>
         </div>
@@ -148,12 +179,14 @@
         <div class="trust-icons-row">
             <div class="trust-item"><i class="fas fa-award"></i> TOP QUALITY</div>
             <div class="trust-item"><i class="fas fa-search-location"></i> CHECK FIRST</div>
-            <div class="trust-item"><i class="fas fa-gem"></i> ORIGINAL LEATHER</div>
+            <div class="trust-item"><i class="fas fa-gem"></i> Stylish Bag</div>
         </div>
 
         <div class="grid-gallery">
-            <img src="1.jpeg" alt="Bag" onerror="this.src='https://placehold.co/250x180/F3F4F6/6B7280?text=Side+View'">
-            <img src="1.jpeg" alt="Bag" onerror="this.src='https://placehold.co/250x180/F3F4F6/6B7280?text=Inside+View'">
+            <img src="1.png" alt="Beige Bag" class="gallery-img" onclick="changeColorFromGallery('1.png', 'Beige')">
+            <img src="2.png" alt="Yellow Bag" class="gallery-img" onclick="changeColorFromGallery('2.png', 'Yellow')">
+            <img src="3.png" alt="Black Bag" class="gallery-img" onclick="changeColorFromGallery('3.png', 'Black')">
+            <img src="4.png" alt="Pink Bag" class="gallery-img" onclick="changeColorFromGallery('4.png', 'Pink')">
         </div>
 
         <div class="reviews-container">
@@ -170,7 +203,7 @@
                     <span class="reviewer-name">Mrs. Khan</span>
                     <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
                 </div>
-                <p class="review-text">"Space kafi zyada hai, laptop asani se aa jata hai. Thank you Luxe Bags."</p>
+                <p class="review-text">"Space kafi zyada hai, asani se samaan aa jata hai. Colors boht pyare hain. Thank you Luxe Bags."</p>
             </div>
         </div>
 
@@ -182,7 +215,7 @@
             </div>
             <div class="delivery-highlight">
                 <i class="fas fa-truck-moving"></i>
-                <span>FREE CASH ON DELIVERY</span>
+                <span>FREE DELIVERY. DO ONLINE PAYMENT AT THE TIME OF DELIVERY </span>
             </div>
         </div>
 
@@ -194,22 +227,22 @@
                 <div class="input-group"><i class="fas fa-city"></i>
                     <select id="cust_city" required>
                         <option value="" disabled selected>Select Your City</option>
-                        <option value="Karachi">Karachi</option>
                         <option value="Lahore">Lahore</option>
-                        <option value="Islamabad">Islamabad</option>
-                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="input-group"><i class="fas fa-map-marker-alt"></i><textarea id="cust_address" placeholder="Complete Home Address" required></textarea></div>
                 <button type="submit" id="submitBtn" class="submit-btn">ORDER NOW - PAY ON DELIVERY</button>
             </form>
         </div>
+
+        <a href="https://wa.me/923426881848?text=Hi!%20I%20am%20interested%20in%20seeing%20other%20bag%20designs%20you%20have%20available." class="whatsapp-btn-large" target="_blank"><i class="fab fa-whatsapp" style="font-size: 24px; margin-right: 10px;"></i> FOR OTHER BAG ORDERS</a>
     </div>
 </div>
 
 <a href="https://wa.me/923426881848" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <script>
+    // Timer Logic
     function startTimer(duration, display) {
         let timer = duration;
         setInterval(() => {
@@ -222,11 +255,56 @@
     }
     window.onload = () => startTimer(7200, document.querySelector('#countdown'));
 
+    // Color Selection Logic
+    let selectedColor = "Beige"; // Default color
+    const colorBtns = document.querySelectorAll('.color-btn');
+    const mainImage = document.getElementById('mainImage');
+
+    function setActiveButtonByImg(imgSrc) {
+        colorBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.getAttribute('data-img') === imgSrc) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    colorBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const imgSrc = btn.getAttribute('data-img');
+            selectedColor = btn.getAttribute('data-color');
+            
+            // Add fade effect
+            mainImage.style.opacity = 0.5;
+            setTimeout(() => {
+                mainImage.src = imgSrc;
+                mainImage.style.opacity = 1;
+            }, 150);
+
+            setActiveButtonByImg(imgSrc);
+        });
+    });
+
+    // Handle clicks on gallery images
+    window.changeColorFromGallery = function(imgSrc, colorName) {
+        selectedColor = colorName;
+        
+        mainImage.style.opacity = 0.5;
+        setTimeout(() => {
+            mainImage.src = imgSrc;
+            mainImage.style.opacity = 1;
+        }, 150);
+
+        setActiveButtonByImg(imgSrc);
+        // Scroll slightly up so user sees the main image change
+        mainImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Order Submission Logic
     document.getElementById("orderForm").addEventListener("submit", async (e) => {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
-        // Adding the spinner icon
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
 
         const payload = {
@@ -235,7 +313,7 @@
             "phone": document.getElementById('cust_phone').value,
             "address": document.getElementById('cust_address').value,
             "city": document.getElementById('cust_city').value,
-            "product": "Premium Leather Bag (3000)", 
+            "product": `Premium Leather Bag (${selectedColor})`, 
             "total_bill": "Rs 3000",
             "timestamp": new Date().toLocaleString('en-PK')
         };
