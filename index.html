@@ -21,7 +21,7 @@
     fbq('track', 'ViewContent', {
         content_name: 'Premium Leather Bag',
         content_category: 'Accessories',
-        value: 3000.00,
+        value: 2500.00,
         currency: 'PKR'
     });
     </script>
@@ -209,9 +209,9 @@
 
         <div class="pricing-card">
             <div style="display: flex; align-items: center;">
-                <span class="new-price">Rs 3,000</span>
+                <span class="new-price">Rs 2,500</span>
                 <span class="old-price">Rs 5,500</span>
-                <span class="discount-tag">45% OFF</span>
+                <span class="discount-tag">55% OFF</span>
             </div>
             <div class="delivery-highlight">
                 <i class="fas fa-truck-moving"></i>
@@ -308,18 +308,18 @@
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Order...';
 
         const payload = {
-            "order_id": '#BAG-' + Math.floor(1000 + Math.random() * 9000),
+            "order_id": 'BAG-' + Math.floor(1000 + Math.random() * 9000),
             "name": document.getElementById('cust_name').value,
             "phone": document.getElementById('cust_phone').value,
             "address": document.getElementById('cust_address').value,
             "city": document.getElementById('cust_city').value,
             "product": `Premium Leather Bag (${selectedColor})`, 
-            "total_bill": "Rs 3000",
+            "total_bill": "Rs 2500",
             "timestamp": new Date().toLocaleString('en-PK')
         };
 
         try {
-            fbq('track', 'Purchase', { value: 3000, currency: 'PKR' });
+            fbq('track', 'Purchase', { value: 2500, currency: 'PKR' });
             await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
