@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE BAGS | Premium Executive Collection</title>
+    <title>AuraVault | Premium Executive Collection</title>
     
     <!-- Tracking Scripts -->
     <script>
@@ -34,8 +34,8 @@
         :root { --bg: #F3F4F6; --surface: #FFFFFF; --primary: #111827; --accent: #F59E0B; --slate: #6B7280; --red: #DC2626; --success: #10B981; }
         body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--bg); color: var(--primary); }
         .wrapper { max-width: 500px; margin: 0 auto; background: var(--surface); min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        .logo-container { padding: 15px 0; text-align: center; background: #fff; }
-        .logo-container img { max-width: 120px; height: auto; }
+        .logo-container { padding: 20px 0; text-align: center; background: #fff; }
+        .logo-container img { max-width: 200px; height: auto; }
         .timer-bar { background: #FEF3C7; color: #B45309; font-weight: 800; text-align: center; padding: 10px; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #FDE68A; }
         .promo-banner { background: #111827; color: #fff; text-align: center; padding: 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
         .hero { padding: 20px; text-align: center; }
@@ -84,12 +84,11 @@
 <a href="https://wa.me/923000000000" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
 <div class="wrapper">
-   
     <div class="promo-banner">🔥 Exclusive Discount Available For Last 24 Hours!</div>
     <div class="timer-bar">⚡ Offer Expires In: <span id="countdown">24:00:00</span></div>
     
     <div class="hero">
-        <h1 class="headline">Never Compromise on Style: The Spacious & Stylish, Premium Executive Bag Built for Your Busy Days.</h1>
+        <h1 class="headline">👜 Stylish & Trendy Ladies Bags – Free Cash on Delivery All Over Pakistan</h1>
         <div class="benefits-grid">
             <div class="benefit-box"><i class="fas fa-gem"></i> High Quality</div>
             <div class="benefit-box"><i class="fas fa-truck"></i> FREE CASH ON DELIVERY</div>
@@ -154,9 +153,7 @@
         <i class="fas fa-shield-alt" style="font-size: 30px; color: var(--accent); margin-bottom: 10px;"></i>
         <h4 style="margin: 5px 0;">7-Day Money-Back Guarantee</h4>
         <p style="font-size: 13px; color: #666; margin: 0 0 15px 0;">If you are not satisfied with the quality, you can return or exchange the product within 7 days.</p>
-        <div style="background: #111827; color: #F59E0B; padding: 10px; border-radius: 8px; font-weight: 800; font-size: 15px;">
-            ⚠️ 07 PIECES LEFT IN STOCK
-        </div>
+       
     </div>
 
     <div class="footer-bottom">
@@ -170,30 +167,39 @@
 </div>
 
 <script>
+    // Timer Logic
     const countdownElement = document.getElementById('countdown');
     let time = localStorage.getItem('timerValue') || 86400;
-    setInterval(() => {
-        if(time > 0) { time--; localStorage.setItem('timerValue', time); }
-        let h = Math.floor(time / 3600);
-        let m = Math.floor((time % 3600) / 60);
-        let s = time % 60;
-        countdownElement.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+
+    const timerInterval = setInterval(() => {
+        time--;
+        localStorage.setItem('timerValue', time);
+        let hours = Math.floor(time / 3600);
+        let minutes = Math.floor((time % 3600) / 60);
+        let seconds = time % 60;
+        countdownElement.innerText = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+        if(time <= 0) clearInterval(timerInterval);
     }, 1000);
 
+    // Cart Logic
     let cart = [];
     let total = 0;
 
     function addToCart(name, price, btn) {
         cart.push({ name, price });
         total += price;
+
         const list = document.getElementById('cartList');
         const itemId = name.replace(/\s+/g, '');
         list.innerHTML += `<li id="item-${itemId}">${name} - Rs ${price} <button class="btn-remove" onclick="removeItem('${name}', ${price})">Remove</button></li>`;
         document.getElementById('grandTotal').innerText = total;
+
         btn.innerHTML = '✓ Selected';
         btn.classList.add('selected');
         btn.disabled = true;
+
         document.getElementById('checkoutForm').scrollIntoView({ behavior: 'smooth' });
+        fbq('track', 'AddToCart', { content_name: name, value: price, currency: 'PKR' });
     }
 
     function removeItem(name, price) {
@@ -201,36 +207,46 @@
         total -= price;
         document.getElementById('grandTotal').innerText = total;
         document.getElementById('item-' + name.replace(/\s+/g, '')).remove();
+        
         const btn = document.getElementById('btn-' + name.replace(/\s+/g, ''));
-        if(btn) { btn.innerHTML = 'Add to Cart'; btn.classList.remove('selected'); btn.disabled = false; }
+        btn.innerHTML = 'Add to Cart';
+        btn.classList.remove('selected');
+        btn.disabled = false;
     }
 
     document.getElementById("checkoutForm").addEventListener("submit", async (e) => {
         e.preventDefault();
         if(cart.length === 0) { alert("Cart is empty!"); return; }
+
         const btn = document.getElementById('submitBtn');
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner"></span> Processing...';
-        
+
+        const productList = cart.map(item => item.name).join(", ");
         const payload = {
+            order_id: 'BAG-' + Math.floor(1000 + Math.random() * 9000),
             name: document.getElementById('name').value.trim(),
             phone: document.getElementById('phone').value.trim(),
             address: document.getElementById('address').value.trim(),
             city: document.getElementById('city').value.trim(),
-            product: cart.map(i => i.name).join(", "),
-            total_bill: total
+            payment_method: "Cash On Delivery (COD)",
+            product: productList,
+            total_bill: total,
+            timestamp: new Date().toLocaleString("en-PK", { timeZone: "Asia/Karachi" })
         };
 
         try {
+            fbq('track', 'Purchase', { value: total, currency: 'PKR' });
             await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ data: payload })
             });
-            window.location.href = "Thank_you.html";
+            window.location.href = "Thank_you.html?oid=" + payload.order_id + "&bill=" + total;
         } catch(err) {
-            let msg = `New Order:%0A- Name: ${payload.name}%0A- Phone: ${payload.phone}%0A- Address: ${payload.address}%0A- City: ${payload.city}%0A- Products: ${payload.product}%0A- Total: Rs ${payload.total_bill}`;
-            window.location.href = "https://wa.me/923000000000?text=" + msg;
+            alert("Error! Please contact us on WhatsApp.");
+            btn.disabled = false;
+            btn.innerHTML = "CONFIRM ORDER (COD)";
         }
     });
 </script>
