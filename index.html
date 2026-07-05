@@ -143,7 +143,12 @@
     <form id="checkoutForm" class="checkout-form">
         <div class="input-group"><input type="text" id="name" placeholder="Full Name" required></div>
         <div class="input-group"><input type="tel" id="phone" placeholder="WhatsApp Number" required></div>
-        <div class="input-group"><input type="text" id="city" placeholder="City" required></div>
+        
+        <!-- City box nazar aayega aur Lahore likha hoga, edit nahi ho sakega -->
+        <div class="input-group">
+            <input type="text" id="city" value="Lahore" readonly style="background-color: #f3f4f6; cursor: not-allowed; font-weight: bold;">
+        </div>
+        
         <div class="input-group"><textarea id="address" placeholder="Delivery Address" required></textarea></div>
         <button type="submit" id="submitBtn" class="btn-confirm">CONFIRM ORDER (COD)</button>
     </form>
