@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Confirmed | Luxe Bags</title>
+    <title>Order Confirmed |AuraVault</title>
     
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -53,7 +53,7 @@
 <div class="card">
     <i class="fas fa-check-circle icon"></i>
     <h1>Order Confirmed!</h1>
-    <p>Thank you for choosing Luxe Bags. Our team will verify your details and contact you via WhatsApp shortly.</p>  
+    <p>Thank you for choosing AuraVault. Our team will verify your details and contact you via WhatsApp shortly.</p>  
     <p>Your order will be delivered within 48 hours.</p>
     
     <div class="details-box">
@@ -95,14 +95,14 @@
         document.getElementById('displayOID').innerText = oid || "N/A";
         document.getElementById('displayTotal').innerText = total ? "Rs " + total + " (COD)" : "N/A";
 
-        // Trigger Purchase Pixel
-        if (total) {
+        // Trigger Purchase Pixel with eventID for Deduplication
+        if (total && oid) {
             fbq('track', 'Purchase', {
                 value: parseFloat(total),
                 currency: 'PKR',
                 content_name: 'Premium Executive Bag',
                 order_id: oid
-            });
+            }, { eventID: 'purchase_' + oid }); 
         }
     };
 </script>
