@@ -17,6 +17,11 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '999924072956897'); 
     fbq('track', 'PageView');
+
+    // Unique Event ID Generator for Deduplication
+    function generateEventId() {
+        return 'event_' + Math.random().toString(36).substr(2, 9) + Date.now();
+    }
     </script>
 
     <script type="text/javascript">
@@ -144,7 +149,6 @@
         <div class="input-group"><input type="text" id="name" placeholder="Full Name" required></div>
         <div class="input-group"><input type="tel" id="phone" placeholder="WhatsApp Number" required></div>
         
-        <!-- City box mein ab 'Lahore Only' likha hoga -->
         <div class="input-group">
             <input type="text" id="city" value="Currently Lahore Only" readonly style="background-color: #f3f4f6; cursor: not-allowed; font-weight: bold; color: #111827;">
         </div>
@@ -165,7 +169,7 @@
         <i class="fas fa-shield-alt" style="font-size: 30px; color: var(--accent); margin-bottom: 10px;"></i>
         <h4 style="margin: 5px 0;">7-Day Money-Back Guarantee</h4>
         <p style="font-size: 13px; color: #666; margin: 0 0 15px 0;">If you are not satisfied with the quality, you can return or exchange the product within 7 days.</p>
-       
+        
     </div>
 
     <div class="footer-bottom">
@@ -211,7 +215,9 @@
         btn.disabled = true;
 
         document.getElementById('checkoutForm').scrollIntoView({ behavior: 'smooth' });
-        fbq('track', 'AddToCart', { content_name: name, value: price, currency: 'PKR' });
+        
+        // Track AddToCart with eventID
+        fbq('track', 'AddToCart', { content_name: name, value: price, currency: 'PKR' }, { eventID: generateEventId() });
     }
 
     function removeItem(name, price) {
@@ -248,7 +254,9 @@
         };
 
         try {
-            fbq('track', 'Purchase', { value: total, currency: 'PKR' });
+            // Track Purchase with eventID
+            fbq('track', 'Purchase', { value: total, currency: 'PKR' }, { eventID: generateEventId() });
+            
             await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
