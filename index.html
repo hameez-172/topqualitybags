@@ -233,114 +233,122 @@
 
 
 <script>
-    function startTimer(duration, display) {
-        let timer = duration;
-        setInterval(() => {
-            let h = parseInt(timer / 3600, 10);
-            let m = parseInt((timer % 3600) / 60, 10);
-            let s = parseInt(timer % 60, 10);
-            display.textContent = `${h<10?'0':''}${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`;
-            if (--timer < 0) timer = duration;
-        }, 1000);
-    }
-    window.onload = () => startTimer(7200, document.querySelector('#countdown'));
+function startTimer(duration, display) {
+    let timer = duration;
+    setInterval(() => {
+        let h = parseInt(timer / 3600, 10);
+        let m = parseInt((timer % 3600) / 60, 10);
+        let s = parseInt(timer % 60, 10);
+        display.textContent = `${h<10?'0':''}${h}:${m<10?'0':''}${m}:${s<10?'0':''}${s}`;
+        if (--timer < 0) timer = duration;
+    }, 1000);
+}
+window.onload = () => startTimer(7200, document.querySelector('#countdown'));
 
-    let selectedColor = "Beige";
-    const colorBtns = document.querySelectorAll('.color-btn');
-    const mainImage = document.getElementById('mainImage');
+let selectedColor = "Beige";
+const colorBtns = document.querySelectorAll('.color-btn');
+const mainImage = document.getElementById('mainImage');
 
-    function setActiveButtonByImg(imgSrc) {
-        colorBtns.forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.getAttribute('data-img') === imgSrc) {
-                btn.classList.add('active');
-            }
-        });
-    }
-
+function setActiveButtonByImg(imgSrc) {
     colorBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const imgSrc = btn.getAttribute('data-img');
-            selectedColor = btn.getAttribute('data-color');
-            mainImage.style.opacity = 0.5;
-            setTimeout(() => {
-                mainImage.src = imgSrc;
-                mainImage.style.opacity = 1;
-            }, 150);
-            setActiveButtonByImg(imgSrc);
-        });
+        btn.classList.remove('active');
+        if (btn.dataset.img === imgSrc) {
+            btn.classList.add('active');
+        }
     });
+}
 
-    window.changeColorFromGallery = function(imgSrc, colorName) {
-        selectedColor = colorName;
+colorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        selectedColor = btn.dataset.color;
+        const imgSrc = btn.dataset.img;
+
         mainImage.style.opacity = 0.5;
         setTimeout(() => {
             mainImage.src = imgSrc;
             mainImage.style.opacity = 1;
         }, 150);
+
         setActiveButtonByImg(imgSrc);
-        mainImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    });
+});
 
-    // ==========================
-    // TEST MODE
-    // true  = Pixel Purchase OFF
-    // false = Pixel Purchase ON
-    // ==========================
-    const TEST_MODE = false;
+window.changeColorFromGallery = function(imgSrc, colorName) {
+    selectedColor = colorName;
 
-    document.getElementById("orderForm").addEventListener("submit", async (e) => {
-        e.preventDefault();
+    mainImage.style.opacity = 0.5;
+    setTimeout(() => {
+        mainImage.src = imgSrc;
+        mainImage.style.opacity = 1;
+    }, 150);
 
-        const btn = document.getElementById('submitBtn');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    setActiveButtonByImg(imgSrc);
+    mainImage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+};
 
-        const myOrderID = 'BAG-' + Math.floor(1000 + Math.random() * 9000);
-        const totalBill = "1999";
+const TEST_MODE = true;
 
-        const payload = {
-            order_id: myOrderID,
-            name: document.getElementById('cust_name').value,
-            phone: document.getElementById('cust_phone').value,
-            address: document.getElementById('cust_address').value,
-            city: document.getElementById('cust_city').value,
-            product: `Premium Leather Bag (${selectedColor})`,
-            total_bill: totalBill,
-            timestamp: new Date().toLocaleString('en-PK')
-        };
+document.getElementById("orderForm").addEventListener("submit", async function(e) {
 
-        try {
+    e.preventDefault();
 
-            const response = await fetch('https://sheetdb.io/api/v1/fud286kh3rn9s', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ data: [payload] })
-            });
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-            // Purchase event sirf SheetDB success hone ke baad
-            if (response.ok && !TEST_MODE) {
-                fbq('track', 'Purchase', {
-                    value: 1999,
-                    currency: 'PKR',
-                    order_id: myOrderID
-                });
+    const myOrderID = "BAG-" + Math.floor(1000 + Math.random() * 9000);
+    const totalBill = "1999";
+
+    const formData = new FormData();
+    formData.append("order_id", myOrderID);
+    formData.append("name", document.getElementById("cust_name").value);
+    formData.append("phone", document.getElementById("cust_phone").value);
+    formData.append("city", document.getElementById("cust_city").value);
+    formData.append("address", document.getElementById("cust_address").value);
+    formData.append("product", `Premium Leather Bag (${selectedColor})`);
+    formData.append("total_bill", totalBill);
+    formData.append("timestamp", new Date().toLocaleString("en-PK"));
+
+    try {
+
+        const response = await fetch(
+            "https://script.google.com/macros/s/AKfycbxKB815OBmv1nhiGhKM9vUMLlyifpRh8kKUmKQ6EV1HFos-FNulI-9RFQVGkig_M-Rs/exec",
+            {
+                method: "POST",
+                body: formData
             }
+        );
 
-            window.location.href = `thank_you.html?oid=${myOrderID}&bill=${totalBill}`;
+        const result = await response.json();
 
-        } catch (error) {
-
-            btn.disabled = false;
-            btn.innerHTML = 'ORDER NOW - PAY ON DELIVERY';
-
-            alert("Order submit nahi hua. Please try again.");
-
+        if (!result.success) {
+            throw new Error(result.error || "Order save failed");
         }
 
-    });
-</script>
-</body>
+        if (!TEST_MODE) {
+            fbq('track', 'Purchase', {
+                value: 1999,
+                currency: 'PKR',
+                order_id: myOrderID
+            });
+        }
+
+        window.location.href = `thank_you.html?oid=${myOrderID}&bill=${totalBill}`;
+
+    } catch (err) {
+
+        console.error(err);
+
+        btn.disabled = false;
+        btn.innerHTML = "ORDER NOW - PAY ON DELIVERY";
+
+        alert("Order submit nahi hua. Please try again.");
+
+    }
+
+});
+</script></body>
 </html>
