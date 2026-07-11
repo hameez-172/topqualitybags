@@ -70,8 +70,8 @@
         /* Color Selector Styles */
         .color-selector { text-align: center; margin: 15px 0 25px 0; padding: 15px; background: #F9FAFB; border-radius: 12px; border: 1px solid #E5E7EB; }
         .color-selector p { font-weight: 800; font-size: 15px; margin: 0 0 10px 0; color: var(--dark); }
-        .color-options { display: flex; justify-content: center; gap: 15px; }
-        .color-btn { width: 45px; height: 45px; border-radius: 50%; border: 3px solid #E5E7EB; cursor: pointer; transition: all 0.2s; padding: 0; position: relative; }
+        .color-options { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .color-btn { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #E5E7EB; cursor: pointer; transition: all 0.2s; padding: 0; position: relative; }
         .color-btn.active { border-color: var(--primary); transform: scale(1.15); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
         .color-btn.active::after { content: '\f00c'; font-family: 'Font Awesome 5 Free'; font-weight: 900; color: white; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
         .color-label { display: block; font-size: 12px; font-weight: 700; margin-top: 8px; color: var(--slate); text-transform: uppercase; }
@@ -143,26 +143,50 @@
     </header>
 
     <div class="content">
-        <img src="1.jpg" id="mainImage" class="product-image" alt="Premium Leather Bag">
+        <img src="1.jpg" id="mainImage" class="product-image" alt="Premium Leather Bag - Black & White Houndstooth">
         
         <div class="color-selector">
-            <p><i class="fas fa-palette" style="color: var(--accent);"></i> Select Your Color:</p>
+            <p><i class="fas fa-palette" style="color: var(--accent);"></i> Select Your Style:</p>
             <div class="color-options">
                 <div style="text-align: center;">
-                    <button type="button" class="color-btn active" data-img="1.jpg" data-color="Beige" style="background-color: #E6D9C5;" title="Beige"></button>
+                    <button type="button" class="color-btn active" data-img="1.jpg" data-color="Classic Houndstooth" style="background-color: #2D2D2D;" title="Classic Houndstooth"></button>
+                    <span class="color-label">Classic</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="2.jpg" data-color="Tan Houndstooth" style="background-color: #C08552;" title="Tan Houndstooth"></button>
+                    <span class="color-label">Tan</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="3.jpg" data-color="Navy Embossed" style="background-color: #2C3E50;" title="Navy Embossed"></button>
+                    <span class="color-label">Navy</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="4.jpg" data-color="Beige" style="background-color: #D9C7A8;" title="Beige"></button>
                     <span class="color-label">Beige</span>
                 </div>
                 <div style="text-align: center;">
-                    <button type="button" class="color-btn" data-img="2.jpg" data-color="Yellow" style="background-color: #E8B923;" title="Yellow"></button>
+                    <button type="button" class="color-btn" data-img="5.jpg" data-color="Yellow" style="background-color: #E8B923;" title="Yellow"></button>
                     <span class="color-label">Yellow</span>
                 </div>
                 <div style="text-align: center;">
-                    <button type="button" class="color-btn" data-img="3.jpg" data-color="Black" style="background-color: #2D2D2D;" title="Black"></button>
+                    <button type="button" class="color-btn" data-img="6.jpg" data-color="Black" style="background-color: #1A1A1A;" title="Black"></button>
                     <span class="color-label">Black</span>
                 </div>
                 <div style="text-align: center;">
-                    <button type="button" class="color-btn" data-img="4.jpg" data-color="Pink" style="background-color: #DDA1B0;" title="Pink"></button>
+                    <button type="button" class="color-btn" data-img="7.jpg" data-color="Pink" style="background-color: #E091A3;" title="Pink"></button>
                     <span class="color-label">Pink</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="8.jpg" data-color="Pink Chekered" style="background-color: #EBC7BE; border-style: dashed;" title="Pink Checkered"></button>
+                    <span class="color-label">Pink Chekered</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="9.jpg" data-color="Red woven" style="background-color: #CE423D; border-style: dashed;" title="Red woven"></button>
+                    <span class="color-label">Red woven</span>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="color-btn" data-img="10.jpg" data-color="White" style="background-color: #E6E3DC; border-style: dashed;" title="White"></button>
+                    <span class="color-label">White</span>
                 </div>
             </div>
         </div>
@@ -188,10 +212,16 @@
         </div>
 
         <div class="grid-gallery">
-            <img src="1.jpg" alt="Beige Bag" class="gallery-img" onclick="changeColorFromGallery('1.jpg', 'Beige')">
-            <img src="2.jpg" alt="Yellow Bag" class="gallery-img" onclick="changeColorFromGallery('2.jpg', 'Yellow')">
-            <img src="3.jpg" alt="Black Bag" class="gallery-img" onclick="changeColorFromGallery('3.jpg', 'Black')">
-            <img src="4.jpg" alt="Pink Bag" class="gallery-img" onclick="changeColorFromGallery('4.jpg', 'Pink')">
+            <img src="1.jpg" alt="Classic Houndstooth Bag" class="gallery-img" onclick="changeColorFromGallery('1.jpg', 'Classic Houndstooth')">
+            <img src="2.jpg" alt="Tan Houndstooth Bag" class="gallery-img" onclick="changeColorFromGallery('2.jpg', 'Tan Houndstooth')">
+            <img src="3.jpg" alt="Navy Embossed Bag" class="gallery-img" onclick="changeColorFromGallery('3.jpg', 'Navy Embossed')">
+            <img src="4.jpg" alt="Beige Bag" class="gallery-img" onclick="changeColorFromGallery('4.jpg', 'Beige')">
+            <img src="5.jpg" alt="Yellow Bag" class="gallery-img" onclick="changeColorFromGallery('5.jpg', 'Yellow')">
+            <img src="6.jpg" alt="Black Bag" class="gallery-img" onclick="changeColorFromGallery('6.jpg', 'Black')">
+            <img src="7.jpg" alt="Pink Bag" class="gallery-img" onclick="changeColorFromGallery('7.jpg', 'Pink')">
+            <img src="8.jpg" alt="Color 8 - add your own" class="gallery-img" onclick="changeColorFromGallery('8.jpg', 'Pink Checkered')">
+            <img src="9.jpg" alt="Color 9 - add your own" class="gallery-img" onclick="changeColorFromGallery('9.jpg', 'Red woven')">
+            <img src="10.jpg" alt="Color 10 - add your own" class="gallery-img" onclick="changeColorFromGallery('10.jpg', 'White')">
         </div>
 
     <div class="reviews">
@@ -245,7 +275,7 @@ function startTimer(duration, display) {
 }
 window.onload = () => startTimer(7200, document.querySelector('#countdown'));
 
-let selectedColor = "Beige";
+let selectedColor = "Classic Houndstooth";
 const colorBtns = document.querySelectorAll('.color-btn');
 const mainImage = document.getElementById('mainImage');
 
